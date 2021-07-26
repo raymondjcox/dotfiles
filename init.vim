@@ -125,6 +125,7 @@ let g:clipboard = {
   \ 'cache_enabled': 0,
   \ }
 
+" Automatically format w/ Neoformat
 autocmd BufWritePre *.rs Neoformat
 autocmd BufWritePre *.js Neoformat
 autocmd BufWritePre *.ts Neoformat
@@ -154,27 +155,15 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
+Plug 'norcalli/nvim-colorizer.lua'
+Plug 'windwp/nvim-ts-autotag'
 call plug#end()
 set background=dark
 let g:tokyonight_style = "night"
 colorscheme tokyonight
 
-" Treesitter highlighting / config setup
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  ignore_install = { }, -- List of parsers to ignore installing
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { },  -- list of language that will be disabled
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = false,
-  },
-}
-EOF
+" Color highlighter
+lua require'colorizer'.setup()
 
 " LSP config
 lua << EOF
@@ -230,6 +219,26 @@ local servers = { "pyright", "rust_analyzer", "tsserver" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach=on_attach }
 end
+EOF
+
+" Treesitter highlighting / config setup
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  autotag = {
+    enable = true
+  }
+}
 EOF
 
 " Autocompletion
