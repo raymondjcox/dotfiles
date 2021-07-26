@@ -7,7 +7,7 @@ set encoding=utf-8
 " Double //'s make it save the full path
 set backupdir=~/.config/nvim/backups//
 set directory=~/.config/nvim/swaps//
-set undodir=~/.config/.nvim/undo//
+set undodir=~/.config/nvim/undo//
 
 " Some servers have issues with backup files, see #649
 set nobackup
@@ -109,9 +109,7 @@ augroup BWCCreateDir
 augroup END
 
 " Cursor highlighting in for terminal mode so that it's easier to know where it pastes
-if has('nvim')
-  hi! TermCursorNC ctermfg=15 guifg=#fdf6e3 ctermbg=7 guibg=#93a1a1 cterm=NONE gui=NONE
-endif
+hi! TermCursorNC ctermfg=15 guifg=#fdf6e3 ctermbg=7 guibg=#93a1a1 cterm=NONE gui=NONE
 
 " Startup speedup
 let g:clipboard = {
@@ -132,24 +130,13 @@ autocmd BufWritePre *.js Neoformat
 autocmd BufWritePre *.ts Neoformat
 autocmd BufWritePre *.tsx Neoformat
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
-
-" Avoid showing message extra message when using completion
-set shortmess+=c
-
-
 " Navigate between splits
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -166,23 +153,44 @@ Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 set background=dark
 colorscheme jellybeans
 
-" lua require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
-" lua require'lspconfig'.rust_analyzer.setup{on_attach=require'completion'.on_attach}
-autocmd BufEnter * lua require'completion'.on_attach()
-
-
-lua << EOF
-require'lspconfig'.tsserver.setup{}
+" Treesitter highlighting / config setup
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { },  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
 EOF
 
-lua << EOF
-require'lspconfig'.rust_analyzer.setup{}
+" Treesiter incremental search
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
 EOF
 
+" LSP config
 lua << EOF
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
@@ -234,6 +242,16 @@ end
 -- and map buffer local keybindings when the language server attaches
 local servers = { "pyright", "rust_analyzer", "tsserver" }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup { on_attach = on_attach }
+  nvim_lsp[lsp].setup { on_attach=on_attach }
 end
 EOF
+
+" Autocompletion
+autocmd BufEnter * lua require'completion'.on_attach()
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+" Avoid showing message extra message when using completion
+set shortmess+=c
