@@ -6,4 +6,8 @@
     ~/.zshrc: zshrc
     ~/.config/nvim/init.vim: init.vim
 
-
+- create:
+    - ~/downloads
+    - ~/.config/nvim/backups
+    - ~/.config/nvim/swaps
+    - ~/.config/nvim/undo

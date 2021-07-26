@@ -7,7 +7,7 @@ set encoding=utf-8
 " Double //'s make it save the full path
 set backupdir=~/.config/nvim/backups//
 set directory=~/.config/nvim/swaps//
-set undodir=~/.nvim/undo//
+set undodir=~/.config/.nvim/undo//
 
 " Some servers have issues with backup files, see #649
 set nobackup
