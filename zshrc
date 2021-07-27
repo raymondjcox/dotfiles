@@ -1,3 +1,4 @@
+export EDITOR="nvim"
 export ZSH="/Users/raymond/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
