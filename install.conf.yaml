@@ -1,14 +1,12 @@
-- clean: ['~']
-
 - link:
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
-    ~/.config/nvim/init.vim: init.vim
+    ~/.config/nvim/init.lua: init.lua
 
 - create:
-    - ~/downloads
-    - ~/.config/nvim/backups
-    - ~/.config/nvim/swaps
-    - ~/.config/nvim/undo
-    - ~/.zshrc.custom
+    - ~/.local/share/nvim/swaps
+    - ~/.local/share/nvim/undo
+
+- shell:
+    - [touch ~/.zshrc.custom, Ensuring custom zshrc exists]

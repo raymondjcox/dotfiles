@@ -10,3 +10,5 @@ alias v="nvim"
 alias vim="nvim"
 
 source ~/.zshrc.custom
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
