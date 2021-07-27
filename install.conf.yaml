@@ -11,3 +11,4 @@
     - ~/.config/nvim/backups
     - ~/.config/nvim/swaps
     - ~/.config/nvim/undo
+    - ~/.zshrc.custom

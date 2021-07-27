@@ -7,3 +7,5 @@ source $ZSH/oh-my-zsh.sh
 
 alias v="nvim"
 alias vim="nvim"
+
+source ~/.zshrc.custom
