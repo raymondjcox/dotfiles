@@ -33,8 +33,12 @@ vim.o.cmdheight = 2
 vim.o.updatetime = 300
 vim.o.completeopt = 'menuone,noinsert,noselect'
 vim.g.mapleader = ','
--- vim.o.listchars = 'tab:▸\ ,trail:▫'
--- vim.o.shortmess+=c
+
+-- Using Lua functions
+vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files()<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", { noremap = true })
 
 -- Reload init.lua easily
 _G.load = function(file)
@@ -46,11 +50,8 @@ vim.api.nvim_set_keymap('n', '<leader>sv', '<cmd>luafile $MYVIMRC<CR>', { norema
 -- Keyboard shortcuts
 vim.api.nvim_set_keymap('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>z', ':e ~/.zshrc<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>f', ':Files<CR>', { noremap = true })
+--vim.api.nvim_set_keymap('n', '<leader>f', ':Files<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>h', ':noh<CR>', { noremap = true })
-
--- Use rg for fzf
-vim.env.FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!.git/*"'
 
 -- Automatically format w/ Neoformat
 vim.api.nvim_exec([[
@@ -63,28 +64,27 @@ vim.api.nvim_exec([[
 require('packer').startup(function()
   use{'wbthomason/packer.nvim'}
   use{'neovim/nvim-lspconfig'}
-  use{'junegunn/fzf', dir = '~/.fzf', run = './install --all'}
   use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use{'junegunn/fzf.vim'}
   use{'mhinz/vim-startify'}
   use{'tpope/vim-surround'}
   use{'tpope/vim-repeat'}
   use{'tpope/vim-fugitive'}
   use{'sbdchd/neoformat'}
-  use{'roman/golden-ratio'}
   use{'scrooloose/nerdcommenter'}
   use{'pangloss/vim-javascript'}
   use{'leafgarland/typescript-vim'}
   use{'christoomey/vim-tmux-navigator'}
-  use{'nvim-lua/completion-nvim'}
   use{'hrsh7th/nvim-compe'}
   use{'folke/tokyonight.nvim'}
   use{'nvim-lua/plenary.nvim'}
-  use{'windwp/nvim-ts-autotag'}
   use{'kyazdani42/nvim-web-devicons'}
   use{
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
 end)
 
