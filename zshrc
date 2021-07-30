@@ -15,5 +15,5 @@ alias ev="nvim ~/.config/nvim/init.lua"
 alias ff="fzf | xargs nvim"
 alias fh="history | fzf +s --tac"
 
-source ~/.zshrc.custom
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zshrc.custom ] && source ~/.zshrc.custom

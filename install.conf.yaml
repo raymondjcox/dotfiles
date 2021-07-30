@@ -7,6 +7,4 @@
 - create:
     - ~/.local/share/nvim/swaps
     - ~/.local/share/nvim/undo
-
-- shell:
-    - [touch ~/.zshrc.custom, Ensuring custom zshrc exists]
+    - ~/.local/share/nvim/backups
