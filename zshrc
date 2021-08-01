@@ -1,7 +1,7 @@
 # Run acs to see all alaises
 
 export EDITOR="nvim"
-export ZSH="/Users/raymond/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 plugins=(git asdf command-not-found yarn npm httpie kubectl kubectx aliases)
