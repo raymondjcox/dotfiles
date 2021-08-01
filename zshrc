@@ -1,8 +1,10 @@
+# Run acs to see all alaises
+
 export EDITOR="nvim"
 export ZSH="/Users/raymond/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
-plugins=(git asdf)
+plugins=(git asdf command-not-found yarn npm httpie aliases)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -17,3 +19,5 @@ alias fh="history | fzf +s --tac"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.custom ] && source ~/.zshrc.custom
+
+autoload -Uz compinit && compinit
