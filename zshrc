@@ -4,9 +4,10 @@ export EDITOR="nvim"
 export ZSH="/Users/raymond/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
-plugins=(git asdf command-not-found yarn npm httpie aliases)
+plugins=(git asdf command-not-found yarn npm httpie kubectl kubectx aliases)
 
 source $ZSH/oh-my-zsh.sh
+RPS1='$(kubectx_prompt_info)'
 
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 
