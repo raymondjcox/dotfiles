@@ -1,97 +1,4 @@
-vim.cmd('filetype plugin indent on')
-vim.cmd('syntax enable')
-
-vim.o.encoding = 'utf-8'
-
-vim.o.backupdir = vim.env.HOME .. "/.local/share/nvim/backups"
-vim.o.directory = vim.env.HOME .. "/.local/share/nvim/swaps"
-vim.o.undodir = vim.env.HOME .. "/.local/share/nvim/undo"
-
--- Basic settings
-vim.o.autoindent = true
-vim.o.hidden = true
-vim.o.history = 1000
-vim.o.startofline = false
-vim.o.diffopt = 'filler'
-vim.o.clipboard = 'unnamedplus'
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.undofile = true
-vim.o.lazyredraw = true
-vim.o.expandtab = true
-vim.o.wrap = false
-vim.o.incsearch = true
-vim.o.scrolloff = 3
-vim.o.shiftwidth = 2
-vim.o.softtabstop = 2
-vim.o.wrapscan = true
-vim.o.visualbell = true
-vim.o.winheight = 5
-vim.o.winminheight = 5
-vim.o.inccommand = 'nosplit'
-vim.o.cmdheight = 2
-vim.o.updatetime = 300
-vim.o.completeopt = 'menuone,noinsert,noselect'
-vim.g.mapleader = ','
-
--- Using Lua functions
-vim.api.nvim_set_keymap('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files()<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", { noremap = true })
-
--- Reload init.lua easily
-_G.load = function(file)
-    require('plenary.reload').reload_module(file, true)
-    return require(file)
-end
-vim.api.nvim_set_keymap('n', '<leader>sv', '<cmd>luafile $MYVIMRC<CR>', { noremap = true })
-
--- Keyboard shortcuts
-vim.api.nvim_set_keymap('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>z', ':e ~/.zshrc<CR>', { noremap = true })
---vim.api.nvim_set_keymap('n', '<leader>f', ':Files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>h', ':noh<CR>', { noremap = true })
-
--- Automatically format w/ Neoformat
-vim.api.nvim_exec([[
-  autocmd BufWritePre *.rs Neoformat
-  autocmd BufWritePre *.js Neoformat
-  autocmd BufWritePre *.ts Neoformat
-  autocmd BufWritePre *.tsx Neoformat
-]], false)
-
-require('packer').startup(function()
-  use{'wbthomason/packer.nvim'}
-  use{'neovim/nvim-lspconfig'}
-  use{'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use{'mhinz/vim-startify'}
-  use{'tpope/vim-surround'}
-  use{'tpope/vim-repeat'}
-  use{'tpope/vim-fugitive'}
-  use{'sbdchd/neoformat'}
-  use{'scrooloose/nerdcommenter'}
-  use{'pangloss/vim-javascript'}
-  use{'leafgarland/typescript-vim'}
-  use{'christoomey/vim-tmux-navigator'}
-  use{'hrsh7th/nvim-compe'}
-  use{'folke/tokyonight.nvim'}
-  use{'nvim-lua/plenary.nvim'}
-  use{'kyazdani42/nvim-web-devicons'}
-  use{
-    'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-  }
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
-  }
-end)
-
-require('lualine').setup({ options = {theme = 'tokyonight'} })
-
-vim.g.tokyonight_style = 'night'
-vim.cmd('colorscheme tokyonight')
+local map_key = vim.api.nvim_set_keymap
 
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
@@ -214,11 +121,12 @@ _G.s_tab_complete = function()
   end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map_key("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map_key("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map_key("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map_key("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 --This line is important for auto-import
-vim.api.nvim_set_keymap('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
-vim.api.nvim_set_keymap('i', '<c-space>', 'compe#complete()', { expr = true })
+map_key('i', '<cr>', 'compe#confirm("<cr>")', { expr = true })
+map_key('i', '<c-space>', 'compe#complete()', { expr = true })
+

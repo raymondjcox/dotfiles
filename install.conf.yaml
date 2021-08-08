@@ -2,9 +2,7 @@
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
-    ~/.config/nvim/init.lua: init.lua
-    ~/.oh-my-zsh/themes/custom.zsh-theme: zshrc-theme
-
+    ~/.config/nvim: neovim
 - create:
     - ~/.local/share/nvim/swaps
     - ~/.local/share/nvim/undo
