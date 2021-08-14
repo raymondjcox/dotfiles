@@ -3,15 +3,13 @@ local cmd = vim.cmd
 local api = vim.api
 local map_key = vim.api.nvim_set_keymap
 local function opt(o, v, scopes)
-  scopes = scopes or {o_s}
-  for _, s in ipairs(scopes) do s[o] = v end
+  vim.o[o] = v
 end
-
-cmd('filetype plugin indent on')
-cmd('syntax enable')
 
 -- Basic settings
 g.mapleader = ','
+cmd('filetype plugin indent on')
+cmd('syntax enable')
 opt('encoding', 'utf-8')
 opt('backupdir', vim.env.HOME .. "/.local/share/nvim/backups")
 opt('directory', vim.env.HOME .. "/.local/share/nvim/swaps")
@@ -34,8 +32,6 @@ opt('shiftwidth', 2)
 opt('softtabstop', 2)
 opt('wrapscan', true)
 opt('visualbell', true)
-opt('minheight', 5)
-opt('winminheight', 5)
 opt('inccommand', 'nosplit')
 opt('cmdheight', 2)
 opt('updatetime', 300)
@@ -59,7 +55,7 @@ map_key('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', { noremap = true })
 map_key('n', '<leader>z', ':e ~/.zshrc<CR>', { noremap = true })
 map_key('n', '<leader>h', ':noh<CR>', { noremap = true })
 
--- All extra plugins & config
+-- All plugins & config
 require('plugins')
 require('plugin_config')
 require('lsp')
