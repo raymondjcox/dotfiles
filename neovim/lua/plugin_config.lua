@@ -2,8 +2,8 @@ local map_key = vim.api.nvim_set_keymap
 local api = vim.api
 
 -- Telescope configuration
-map_key('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files()<cr>", { noremap = true })
-map_key('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { noremap = true })
+map_key('n', '<leader>f', "<cmd>lua require('telescope.builtin').find_files({ path_display = {shorten = 8} })<cr>", { noremap = true })
+map_key('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep({ path_display = {shorten = 8} })<cr>", { noremap = true })
 map_key('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", { noremap = true })
 map_key('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", { noremap = true })
 
@@ -16,5 +16,5 @@ api.nvim_exec([[
   autocmd BufWritePre *.html Neoformat
 ]], false)
 
-require('lualine').setup({ options = {theme = 'tokyonight'} })
+require('lualine').setup({ options = {theme = 'tokyonight', path = 1} })
 
