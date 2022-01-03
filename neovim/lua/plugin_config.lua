@@ -13,6 +13,7 @@ api.nvim_exec([[
   autocmd BufWritePre *.js Neoformat
   autocmd BufWritePre *.ts Neoformat
   autocmd BufWritePre *.tsx Neoformat
+  autocmd BufWritePre *.html Neoformat
 ]], false)
 
 require('lualine').setup({ options = {theme = 'tokyonight'} })

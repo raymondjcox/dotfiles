@@ -54,6 +54,8 @@ map_key('n', '<leader>sv', '<cmd>luafile $MYVIMRC<CR>', { noremap = true })
 map_key('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', { noremap = true })
 map_key('n', '<leader>z', ':e ~/.zshrc<CR>', { noremap = true })
 map_key('n', '<leader>h', ':noh<CR>', { noremap = true })
+map_key('n', '<leader>p', ':e ~/.config/nvim/lua/plugins.lua<CR>', { noremap = true })
+map_key('n', '<leader>l', ':e ~/.config/nvim/lua/lsp.lua<CR>', { noremap = true })
 
 -- All plugins & config
 require('plugins')
