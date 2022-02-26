@@ -37,12 +37,6 @@ opt('cmdheight', 2)
 opt('updatetime', 300)
 opt('completeopt', 'menuone,noinsert,noselect')
 
--- Colorscheme
-g.tokyonight_style = 'night'
-cmd('colorscheme tokyonight')
-opt('termguicolors', true)
-opt('background', 'dark')
-
 -- Reload init.lua easily
 _G.load = function(file)
     require('plenary.reload').reload_module(file, true)
@@ -61,3 +55,10 @@ map_key('n', '<leader>l', ':e ~/.config/nvim/lua/lsp.lua<CR>', { noremap = true 
 require('plugins')
 require('plugin_config')
 require('lsp')
+
+-- Colorscheme
+g.tokyonight_style = 'night'
+cmd('colorscheme tokyonight')
+opt('termguicolors', true)
+opt('background', 'dark')
+
