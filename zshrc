@@ -2,7 +2,7 @@
 
 export EDITOR="nvim"
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="custom"
+ZSH_THEME="robbyrussell"
 
 plugins=(git asdf command-not-found yarn npm httpie kubectl aliases)
 source $ZSH/oh-my-zsh.sh
