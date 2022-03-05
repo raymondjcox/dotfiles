@@ -19,4 +19,7 @@ alias fh="history | fzf +s --tac"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zshrc.custom ] && source ~/.zshrc.custom
 
+# append asdf completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+
 autoload -Uz compinit && compinit
