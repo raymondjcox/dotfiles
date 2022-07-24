@@ -16,8 +16,13 @@ require('packer').startup(function()
   use{'christoomey/vim-tmux-navigator'}
   use{'hrsh7th/nvim-compe'}
   use{'folke/tokyonight.nvim'}
+  use{'morhetz/gruvbox'}
+  use{'EdenEast/nightfox.nvim'}
+  use{'nanotech/jellybeans.vim'}
+  use{'sjl/badwolf'}
   use{'nvim-lua/plenary.nvim'}
   use{'kyazdani42/nvim-web-devicons'}
+  use{'mfussenegger/nvim-lint'}
   use{
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}

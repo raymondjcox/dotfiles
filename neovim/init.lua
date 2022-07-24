@@ -25,7 +25,7 @@ opt('smartcase', true)
 opt('undofile', true)
 opt('lazyredraw', true)
 opt('expandtab', true)
-opt('wrap', true)
+opt('wrap', false)
 opt('incsearch', true)
 opt('scrolloff', 3)
 opt('shiftwidth', 2)
@@ -57,8 +57,7 @@ require('plugin_config')
 require('lsp')
 
 -- Colorscheme
-g.tokyonight_style = 'night'
-cmd('colorscheme tokyonight')
+cmd('colorscheme nightfox')
 opt('termguicolors', true)
 opt('background', 'dark')
 

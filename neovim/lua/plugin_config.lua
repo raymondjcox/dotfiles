@@ -16,5 +16,15 @@ api.nvim_exec([[
   autocmd BufWritePre *.html Neoformat
 ]], false)
 
-require('lualine').setup({ options = {theme = 'tokyonight', path = 1} })
+require('lualine').setup({ options = {theme = 'nightfox', path = 1} })
 
+require('lint').linters_by_ft = {
+  typescript = {'eslint'},
+  typescriptreact = {'eslint'}
+}
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
