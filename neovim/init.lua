@@ -2,7 +2,7 @@ local g = vim.g
 local cmd = vim.cmd
 local api = vim.api
 local map_key = vim.api.nvim_set_keymap
-local function opt(o, v, scopes)
+local function opt(o, v)
   vim.o[o] = v
 end
 
@@ -37,18 +37,12 @@ opt('cmdheight', 2)
 opt('updatetime', 300)
 opt('completeopt', 'menuone,noinsert,noselect')
 
--- Reload init.lua easily
-_G.load = function(file)
-    require('plenary.reload').reload_module(file, true)
-    return require(file)
-end
-map_key('n', '<leader>sv', '<cmd>luafile $MYVIMRC<CR>', { noremap = true })
-
 -- Keyboard shortcuts
 map_key('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', { noremap = true })
 map_key('n', '<leader>z', ':e ~/.zshrc<CR>', { noremap = true })
 map_key('n', '<leader>h', ':noh<CR>', { noremap = true })
 map_key('n', '<leader>p', ':e ~/.config/nvim/lua/plugins.lua<CR>', { noremap = true })
+map_key('n', '<leader>b', ':e ~/.config/nvim/lua/plugin_config.lua<CR>', { noremap = true })
 map_key('n', '<leader>l', ':e ~/.config/nvim/lua/lsp.lua<CR>', { noremap = true })
 
 -- All plugins & config
