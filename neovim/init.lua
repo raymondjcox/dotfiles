@@ -8,16 +8,18 @@ end
 
 -- Basic settings
 g.mapleader = ','
-cmd('filetype plugin indent on')
-cmd('syntax enable')
+
+---- off due to treesitter automatically disabling this
+--cmd('filetype plugin indent on')
+--cmd('syntax enable')
+
 opt('encoding', 'utf-8')
 opt('backupdir', vim.env.HOME .. "/.local/share/nvim/backups")
 opt('directory', vim.env.HOME .. "/.local/share/nvim/swaps")
 opt('undodir', vim.env.HOME .. "/.local/share/nvim/undo")
 opt('autoindent', true)
-opt('hidden', true)
+opt('smartindent', true)
 opt('history', 1000)
-opt('startofline', false)
 opt('diffopt', 'filler')
 opt('clipboard', 'unnamedplus')
 opt('ignorecase', true)
@@ -27,22 +29,19 @@ opt('lazyredraw', true)
 opt('expandtab', true)
 opt('wrap', false)
 opt('incsearch', true)
-opt('scrolloff', 3)
 opt('shiftwidth', 2)
 opt('softtabstop', 2)
 opt('wrapscan', true)
 opt('visualbell', true)
 opt('inccommand', 'nosplit')
-opt('cmdheight', 2)
-opt('updatetime', 300)
-opt('completeopt', 'menuone,noinsert,noselect')
+opt('cmdheight', 1)
 
 -- Keyboard shortcuts
 map_key('n', '<leader>v', ':e ~/.config/nvim/init.lua<CR>', { noremap = true })
 map_key('n', '<leader>z', ':e ~/.zshrc<CR>', { noremap = true })
 map_key('n', '<leader>h', ':noh<CR>', { noremap = true })
 map_key('n', '<leader>p', ':e ~/.config/nvim/lua/plugins.lua<CR>', { noremap = true })
-map_key('n', '<leader>b', ':e ~/.config/nvim/lua/plugin_config.lua<CR>', { noremap = true })
+map_key('n', '<leader>n', ':e ~/.config/nvim/lua/plugin_config.lua<CR>', { noremap = true })
 map_key('n', '<leader>l', ':e ~/.config/nvim/lua/lsp.lua<CR>', { noremap = true })
 
 -- All plugins & config
