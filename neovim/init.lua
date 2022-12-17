@@ -53,4 +53,3 @@ require('lsp')
 cmd('colorscheme nightfox')
 opt('termguicolors', true)
 opt('background', 'dark')
-
