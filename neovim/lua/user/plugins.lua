@@ -35,43 +35,15 @@ return packer.startup(function()
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-tree/nvim-web-devicons")
-	use({
-		"lewis6991/impatient.nvim",
-		config = function()
-			require("impatient").enable_profile()
-		end,
-	})
+	use("lewis6991/impatient.nvim")
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use("goolord/alpha-nvim")
-	use({
-		"echasnovski/mini.surround",
-		config = function()
-			require("mini.surround").setup({})
-		end,
-	})
+	use("echasnovski/mini.surround")
 	use("tpope/vim-fugitive")
 	use("sbdchd/neoformat")
 
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup({
-				toggler = { line = "<leader>ci", block = "<leader>cb" },
-				opleader = { line = "<leader>ci", block = "<leader>cb" },
-				extra = { above = "gcO", below = "gco", eol = "gcA" },
-			})
-		end,
-	})
-	use({
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				context_commentstring = {
-					enable = true,
-				},
-			})
-		end,
-	})
+	use("numToStr/Comment.nvim")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-buffer")
