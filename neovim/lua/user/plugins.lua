@@ -29,51 +29,77 @@ if not status_ok then
 	return
 end
 
-
 return packer.startup(function()
-  use 'wbthomason/packer.nvim'
-  use 'neovim/nvim-lspconfig'
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-tree/nvim-web-devicons'
-  use { 'lewis6991/impatient.nvim',
-        config = function() require('impatient').enable_profile() end
-  }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'goolord/alpha-nvim'
-  use { 'echasnovski/mini.surround',
-         config = function() require("mini.surround").setup {} end
-  }
-  use 'tpope/vim-fugitive'
-  use 'sbdchd/neoformat'
-  use 'scrooloose/nerdcommenter'
+	use("wbthomason/packer.nvim")
+	use("neovim/nvim-lspconfig")
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
+	use("nvim-tree/nvim-web-devicons")
+	use({
+		"lewis6991/impatient.nvim",
+		config = function()
+			require("impatient").enable_profile()
+		end,
+	})
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("goolord/alpha-nvim")
+	use({
+		"echasnovski/mini.surround",
+		config = function()
+			require("mini.surround").setup({})
+		end,
+	})
+	use("tpope/vim-fugitive")
+	use("sbdchd/neoformat")
 
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-nvim-lua'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup({
+				toggler = { line = "<leader>ci", block = "<leader>cb" },
+				opleader = { line = "<leader>ci", block = "<leader>cb" },
+				extra = { above = "gcO", below = "gco", eol = "gcA" },
+			})
+		end,
+	})
+	use({
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				context_commentstring = {
+					enable = true,
+				},
+			})
+		end,
+	})
 
-  use 'L3MON4D3/LuaSnip'
-  use 'rafamadriz/friendly-snippets'
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-nvim-lua")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("saadparwaiz1/cmp_luasnip")
 
-  use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
+	use("L3MON4D3/LuaSnip")
+	use("rafamadriz/friendly-snippets")
 
-  use 'EdenEast/nightfox.nvim'
-  use 'hoob3rt/lualine.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'RRethy/vim-illuminate'
-  use {
-     "windwp/nvim-autopairs",
-      config = function() require("nvim-autopairs").setup {} end
-  }
-  use 'christoomey/vim-tmux-navigator'
+	use("williamboman/mason.nvim")
+	use("williamboman/mason-lspconfig.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
+
+	use("EdenEast/nightfox.nvim")
+	use("hoob3rt/lualine.nvim")
+	use("nvim-telescope/telescope.nvim")
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use("RRethy/vim-illuminate")
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
+	use("christoomey/vim-tmux-navigator")
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end
 end)
-

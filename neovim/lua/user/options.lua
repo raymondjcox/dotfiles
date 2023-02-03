@@ -14,6 +14,7 @@ local options = {
   linebreak = true,
   incsearch = true,
   shiftwidth = 2,
+  softtabstop = 2,
   tabstop = 3,
   background = 'dark',
   updatetime = 300
