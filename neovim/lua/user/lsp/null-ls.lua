@@ -15,7 +15,6 @@ null_ls.setup({
 	sources = {
 		formatting.prettier.with({
 			extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
-			filetypes = { "js", "jsx", "ts", "tsx", "svelte" },
 		}),
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
