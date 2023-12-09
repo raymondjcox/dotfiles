@@ -4,7 +4,7 @@
     ~/.zshrc: zshrc
     ~/.config/nvim:
       create: true
-      path: nvim
+      path: neovim
       ignore-missing: true
 - create:
     - ~/.local/share/nvim/swaps
