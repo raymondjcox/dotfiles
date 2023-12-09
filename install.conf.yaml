@@ -10,3 +10,5 @@
     - ~/.local/share/nvim/swaps
     - ~/.local/share/nvim/undo
     - ~/.local/share/nvim/backups
+- brewfile:
+    - Brewfile
