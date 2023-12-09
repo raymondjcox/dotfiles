@@ -2,7 +2,10 @@
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
-    ~/.config/nvim: neovim
+    ~/.config/nvim:
+      create: true
+      path: nvim
+      ignore-missing: true
 - create:
     - ~/.local/share/nvim/swaps
     - ~/.local/share/nvim/undo
